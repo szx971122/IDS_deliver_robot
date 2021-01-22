@@ -4,3 +4,6 @@
 [submodule "source_code/navigation"]
 	path = source_code/navigation
 	url = https://github.com/ros-planning/navigation.git
+[submodule "source_code/turtlebot3_deliver"]
+	path = source_code/turtlebot3_deliver
+	url = https://github.com/szx971122/turtlebot3_deliver.git
