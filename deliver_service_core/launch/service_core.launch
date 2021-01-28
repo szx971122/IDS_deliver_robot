@@ -1,0 +1,6 @@
+<launch>
+  <rosparam file="$(find deliver_service_core)/param/target_pose.yaml" command="load" />
+
+  <!-- service_core -->
+  <node pkg="deliver_service_core" type="my_service_core" name="my_service_core" output="screen" />
+</launch>
