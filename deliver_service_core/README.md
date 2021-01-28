@@ -1,5 +1,5 @@
 Tutorial:
-Put the whole folder on your catkin workspace and use the catkin_make command to build the package.
+Put the whole folder on your catkin workspace (~/catkin_ws/src) and use the catkin_make command to build the package.
 For those who didn't do it, run     $. ~/catkin_ws/devel/setup.bash    to source the setup file before build the package.
 There are three nodes in this package:
 1. id_sender
