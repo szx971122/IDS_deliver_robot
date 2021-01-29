@@ -95,26 +95,26 @@ public:
             return;
         }
 
-        nh.getParam(poseId + "/position", target_pose_position);
-        nh.getParam(poseId + "/orientation", target_pose_orientation);
+        if (nh.getParam(poseId + "/position", target_pose_position) && nh.getParam(poseId + "/orientation", target_pose_orientation))
+        {
+            poseStampedGoal.header.frame_id = "map";
+            poseStampedGoal.header.stamp = ros::Time::now();
 
-        poseStampedGoal.header.frame_id = "map";
-        poseStampedGoal.header.stamp = ros::Time::now();
+            poseStampedGoal.pose.position.x = target_pose_position[0];
+            poseStampedGoal.pose.position.y = target_pose_position[1];
+            poseStampedGoal.pose.position.z = target_pose_position[2];
 
-        poseStampedGoal.pose.position.x = target_pose_position[0];
-        poseStampedGoal.pose.position.y = target_pose_position[1];
-        poseStampedGoal.pose.position.z = target_pose_position[2];
+            poseStampedGoal.pose.orientation.x = target_pose_orientation[0];
+            poseStampedGoal.pose.orientation.y = target_pose_orientation[1];
+            poseStampedGoal.pose.orientation.z = target_pose_orientation[2];
+            poseStampedGoal.pose.orientation.w = target_pose_orientation[3];
 
-        poseStampedGoal.pose.orientation.x = target_pose_orientation[0];
-        poseStampedGoal.pose.orientation.y = target_pose_orientation[1];
-        poseStampedGoal.pose.orientation.z = target_pose_orientation[2];
-        poseStampedGoal.pose.orientation.w = target_pose_orientation[3];
-        
-        // commented for test
-        // robot_service_status = CALLED;
+            // commented for test
+            // robot_service_status = CALLED;
 
-        // only for test
-        pubPoseStamped.publish(poseStampedGoal);
+            // only for test
+            pubPoseStamped.publish(poseStampedGoal);
+        }
     }
 
     void fnPubPose()
