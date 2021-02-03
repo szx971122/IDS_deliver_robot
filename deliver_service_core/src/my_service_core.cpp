@@ -168,7 +168,8 @@ public:
                 robot_service_status = FREE;
             }
 
-            pubServiceStatusApp.publish(robot_service_status);
+            msgRobotServiceStatus.data = robot_service_status;
+            pubServiceStatusApp.publish(msgRobotServiceStatus);
 
         }
     }
@@ -188,6 +189,8 @@ private:
     std::vector<double> target_pose_position;
     std::vector<double> target_pose_orientation;
     uint8_t robot_service_status = FREE;
+    std_msgs::UInt8 msgRobotServiceStatus;
+
 
     bool is_robot_reached_target = true;
     bool is_robot_completed_task = true;
