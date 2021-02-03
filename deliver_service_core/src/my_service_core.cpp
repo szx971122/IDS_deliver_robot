@@ -131,6 +131,7 @@ public:
                 is_robot_reached_target = false;
                 
                 robot_service_status = DEPARTURE;
+
             }
             else if (robot_service_status == DEPARTURE)
             {
@@ -166,6 +167,9 @@ public:
 
                 robot_service_status = FREE;
             }
+
+            pubServiceStatusApp.publish(robot_service_status);
+
         }
     }
 
