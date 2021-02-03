@@ -216,6 +216,10 @@ add_executable(id_sender src/id_sender.cpp)
 target_link_libraries(id_sender ${catkin_LIBRARIES})
 add_dependencies(id_sender deliver_service_core_generate_messages_cpp)
 
+add_executable(id_sender_command src/id_sender_command.cpp)
+target_link_libraries(id_sender_command ${catkin_LIBRARIES})
+add_dependencies(id_sender_command deliver_service_core_generate_messages_cpp)
+
 add_executable(coor_receiver src/coor_receiver.cpp)
 target_link_libraries(coor_receiver ${catkin_LIBRARIES})
 add_dependencies(coor_receiver deliver_service_core_generate_messages_cpp)
