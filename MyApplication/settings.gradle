@@ -1,2 +1,4 @@
-include ':app'
-rootProject.name = "My Application"
+// this is the example app module which should be replaced with your own app
+include ':rosandroid-example-app'
+// here we include the core of ros-android and rosjava
+include ':libraries:rosandroid-core'
