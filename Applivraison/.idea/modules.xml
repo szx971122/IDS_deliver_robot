@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/robot_de_livraison.iml" filepath="$PROJECT_DIR$/.idea/modules/robot_de_livraison.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/robot_de_livraison.libraries.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/robot_de_livraison.libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/rosandroid-core/robot_de_livraison.libraries.rosandroid-core.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/rosandroid-core/robot_de_livraison.libraries.rosandroid-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rosandroid-example-app/robot_de_livraison.rosandroid-example-app.iml" filepath="$PROJECT_DIR$/.idea/modules/rosandroid-example-app/robot_de_livraison.rosandroid-example-app.iml" />
+    </modules>
+  </component>
+</project>
