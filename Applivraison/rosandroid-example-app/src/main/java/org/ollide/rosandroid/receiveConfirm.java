@@ -15,16 +15,16 @@ public class receiveConfirm extends receiveActivity {
     private  Button receive_confirm;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    protected void onCreate(Bundle saveInstanceState5) {
+    protected void onCreate(Bundle saveInstanceState6) {
 
-        super.onCreate(saveInstanceState5);
+        super.onCreate(saveInstanceState6);
         setContentView(R.layout.receive_confirm);
 
         myTextView4 = (TextView) findViewById(R.id.textView7);
         receive_confirm = (Button) findViewById(R.id.confirm2);
         receive_confirm.setVisibility(View.INVISIBLE);
 
-        if (node.is_robot_completed_task) {
+        if (node.is_robot_reached_target) {
             SharedPreferences sharedPref = getSharedPreferences("conserve", 0);
             String r1 = sharedPref.getString("Room1", "100");
             String r2 = sharedPref.getString("Room2", "001");
@@ -39,6 +39,7 @@ public class receiveConfirm extends receiveActivity {
                             Toast.makeText(getApplicationContext(), "You have received your package.", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(receiveConfirm.this, MainActivity.class);
                             startActivity(intent);
+                            node.is_app_completed_interaction=true;
                             break;
                         default:
                             break;

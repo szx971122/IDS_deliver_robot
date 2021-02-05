@@ -39,6 +39,7 @@ public class MainActivity extends RosActivity {
     public Button btn1,btn2;
     public String r1,r2,rs;
     // private RosTextView<std_msgs.String> rosTextView;
+    public boolean judge;
 
     public MainActivity() {
         super("RosAndroidExample", "RosAndroidExample", URI.create("http://172.16.16.101:11311/"));
@@ -48,6 +49,7 @@ public class MainActivity extends RosActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        judge=true;
 
         btn1=findViewById(R.id.button1);
         btn2=findViewById(R.id.button2);
@@ -66,10 +68,10 @@ public class MainActivity extends RosActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(node.is_robot_available) {
+                if(node.app_status == 0) {
                     Intent intent = new Intent(MainActivity.this, sendActivity.class);
                     startActivity(intent);
-                    node.is_robot_available = false;
+                    node.app_status = 1;
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Robot is not available now, please wait", Toast.LENGTH_LONG).show();

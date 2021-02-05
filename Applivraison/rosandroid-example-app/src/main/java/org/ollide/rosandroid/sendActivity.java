@@ -20,18 +20,17 @@ public class sendActivity extends MainActivity {
 //implements View.OnClickListener
 
     private List<String> startR = new ArrayList<String>();//创建一个String类型的数组列表。
-    private TextView myTextView1;
     private Spinner mySpinnerStart;
-
     private ArrayAdapter<String> adapter;//创建一个数组适配器
-    private Button enter;
+
+    private TextView myTextView1;
+    private Button call_robot;
 
     private SharedPreferences sharedPref;
     private static final String fileName = "conserve";
 
     public String str;
 
-    public String rs;
 
 
     @Override
@@ -45,7 +44,7 @@ public class sendActivity extends MainActivity {
         startR.add("103");
         startR.add("104");
         startR.add("105");
-        startR.add("106");
+        startR.add("114");
 
         myTextView1 = (TextView) findViewById(R.id.textView3);//作用在创建点击事件时的文本说明。
         mySpinnerStart = (Spinner) findViewById(R.id.roomStart);
@@ -97,25 +96,22 @@ public class sendActivity extends MainActivity {
 
             }*/
 
-        enter = (Button) findViewById(R.id.call);
-        enter.setOnClickListener(new View.OnClickListener() {
+        call_robot = (Button) findViewById(R.id.call);
+        call_robot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-               // node.is_goal_confirmed = true;
-                    if (true) {
-                        node.is_goal_confirmed = true;
-                        String prx = "L";
-                        SharedPreferences sharedPref = getSharedPreferences("conserve", 0);
-                        r1 = sharedPref.getString("Room1", "100");
-                        str = prx + r1;
-                        node.strGoalId = str;
-                        Intent intent = new Intent(sendActivity.this, sendCall.class);
-                        intent.putExtra("delInfor", str);
-                        startActivity(intent);
-                    }
-                     else{
-                        Toast.makeText(getApplicationContext(), "Robot is on a mission, please wait", Toast.LENGTH_LONG).show();
-                     }
+
+                    node.is_goal_confirmed = true;
+                    judge=false;
+                    String prx = "L";
+                    SharedPreferences sharedPref = getSharedPreferences("conserve", 0);
+                    r1 = sharedPref.getString("Room1", "100");
+                    str = prx + r1;
+                    node.strGoalId = str;
+                    Intent intent = new Intent(sendActivity.this, sendCall.class);
+                    intent.putExtra("delInfor", str);
+                    startActivity(intent);
+
 
                 }
         });

@@ -54,7 +54,7 @@ public class sendDestin extends MainActivity  {
         startR.add("103");
         startR.add("104");
         startR.add("105");
-        startR.add("106");
+        startR.add("114");
 
 
         myTextView2 = (TextView) findViewById(R.id.textView4);
@@ -109,26 +109,11 @@ public class sendDestin extends MainActivity  {
                 r2 = sharedPref.getString("Room2", "001");
                 node.strGoalId = prx + r2;
                 node.is_goal_confirmed = true;
+
                 Toast.makeText(getApplicationContext(), "We start to send your package.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(sendDestin.this, sendWait_Complete.class);
                 startActivity(intent);
             }
         });
-
-            /*  switch (v.getId()){
-                case R.id.enter:
-                    Toast.makeText(getApplicationContext(), "Object: " + input.getText().toString() + " Deliver From " + r1 +" To " + r2 , Toast.LENGTH_LONG).show();
-
-                    break;
-
-                default:
-                    break;
-
-            }
-           Intent intent = new Intent(this, sendConfirm.class);
-            intent.putExtra("delInfor",rs);
-            startActivity(intent);*/
-
-
     }
 }

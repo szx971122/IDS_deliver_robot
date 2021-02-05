@@ -18,34 +18,39 @@ public class receiveActivity extends MainActivity{
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    protected void onCreate(Bundle saveInstanceState4) {
+    protected void onCreate(Bundle saveInstanceState5) {
 
-        super.onCreate(saveInstanceState4);
+        super.onCreate(saveInstanceState5);
         setContentView(R.layout.receive_interface);
 
         myTextView3 = (TextView) findViewById(R.id.textView5);
         Toast.makeText(getApplicationContext(), "Robot doesn't arrive, please wait.", Toast.LENGTH_LONG).show();
         myTextView3.setText("No new messages.");
 
-        final NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
 
         //node.is_robot_reached_target=true; /////***************/////
 
-        if (node.is_robot_reached_target) {
+        if (node.is_goal_confirmed) {
             SharedPreferences sharedPref = getSharedPreferences("conserve", 0);
             String r1 = sharedPref.getString("Room1", "100");
             String r2 = sharedPref.getString("Room2", "001");
             myTextView3.setText("Our robot is sending a package from room " + r1 + " to your room " + r2 + ".");
 
 
+            /**
+              *Notification
+              */
+            final NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             Notification.Builder notification = new Notification.Builder(this);
             notification.setAutoCancel(true); // 设置打开该通知，该通知自动消失
-            //notification.setSmallIcon();
+            notification.setSmallIcon(R.mipmap.ic_launcher);
             notification.setContentTitle("Package Information");
             notification.setContentText("You have a package from room " + r1 + " to your room " + r2 + ".");
+            notification.setWhen(System.currentTimeMillis());
             notification.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
-            Intent intent = new Intent(receiveActivity.this, receiveConfirm.class);
 
+            Intent intent = new Intent(receiveActivity.this, receiveConfirm.class);
             PendingIntent pi = PendingIntent.getActivity(
                     receiveActivity.this, 0, intent, 0);
             //设置通知栏点击跳转
