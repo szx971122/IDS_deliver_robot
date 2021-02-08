@@ -11,10 +11,12 @@
 
     <Button
         android:id="@+id/button1"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
+        android:textSize="22sp"
         android:text="Send"
         android:textColorHighlight="#1F2438"
         android:textColorHint="#FFFFFF"
@@ -22,10 +24,12 @@
 
     <Button
         android:id="@+id/button2"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="400dp"
+        android:textSize="22sp"
         android:text="Receive"
         android:textColorHighlight="#1F2438"
         android:textColorHint="#FFFFFF"

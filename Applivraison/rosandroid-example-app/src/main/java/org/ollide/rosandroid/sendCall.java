@@ -7,7 +7,7 @@ import android.widget.TextView;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class sendCall extends sendActivity {
+public class sendCall extends MainActivity {
 
     private TextView tv;
     private Button wait;
@@ -26,11 +26,12 @@ public class sendCall extends sendActivity {
 
 
 
-        wait=findViewById(R.id.send);
+        wait=findViewById(R.id.destin_enter__btn);
         wait.setOnClickListener(new View.OnClickListener() {
         @Override
             public void onClick(View v) {
             if (node.is_robot_reached_target) {
+                node.app_status = 3;
                 Intent intent = new Intent(sendCall.this, sendDestin.class);
                 startActivity(intent);
             }

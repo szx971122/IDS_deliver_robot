@@ -100,6 +100,7 @@ public class sendDestin extends MainActivity  {
         });
 
 
+
         send_confirm = (Button) findViewById(R.id.confirm1);
         send_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,10 +109,15 @@ public class sendDestin extends MainActivity  {
                 SharedPreferences sharedPref = getSharedPreferences("conserve", 0);
                 r2 = sharedPref.getString("Room2", "001");
                 node.strGoalId = prx + r2;
-                node.is_goal_confirmed = true;
+
 
                 Toast.makeText(getApplicationContext(), "We start to send your package.", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(sendDestin.this, sendWait_Complete.class);
+
+                node.is_goal_confirmed = true;
+                node.is_app_completed_interaction = true;
+                node.app_status = 4;
+
+                Intent intent = new Intent(sendDestin.this, sendRefresh.class);
                 startActivity(intent);
             }
         });

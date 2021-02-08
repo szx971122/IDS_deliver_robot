@@ -81,27 +81,14 @@ public class sendActivity extends MainActivity {
         });
 
 
-
-
-
-
-            /*  switch (v.getId()){
-                case R.id.enter:
-                    Toast.makeText(getApplicationContext(), "Object: " + input.getText().toString() + " Deliver From " + r1 +" To " + r2 , Toast.LENGTH_LONG).show();
-
-                    break;
-
-                default:
-                    break;
-
-            }*/
-
         call_robot = (Button) findViewById(R.id.call);
         call_robot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     node.is_goal_confirmed = true;
+                    node.app_status = 2;
+
                     judge=false;
                     String prx = "L";
                     SharedPreferences sharedPref = getSharedPreferences("conserve", 0);

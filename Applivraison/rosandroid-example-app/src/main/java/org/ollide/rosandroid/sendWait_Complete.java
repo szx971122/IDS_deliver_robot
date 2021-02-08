@@ -5,28 +5,34 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class sendWait_Complete extends sendDestin {
-    private TextView myTextView3;
+public class sendWait_Complete extends MainActivity {
+    private TextView myTextView4;
     private Button come_back_to_main;
+    private ImageView i_reached;
 
-    protected void onCreate(Bundle savedInstanceState4) {
-        super.onCreate(savedInstanceState4);
-        setContentView(R.layout.send_wait_back_to_main);
 
-        myTextView3 = (TextView) findViewById(R.id.textView7);
-        myTextView3.setText("Your package is sending now, please wait.");
+    protected void onCreate(Bundle savedInstanceState5) {
+        super.onCreate(savedInstanceState5);
+        setContentView(R.layout.send_back_main);
 
-        come_back_to_main = (Button) findViewById(R.id.confirm1);
+        myTextView4 = (TextView) findViewById(R.id.textView8);
+        come_back_to_main = (Button) findViewById(R.id.back_to_main);
+        i_reached = (ImageView) findViewById(R.id.reached);
+        i_reached.setVisibility(View.VISIBLE);
 
-        if(node.is_app_completed_interaction) {
+        if (node.app_status == 6) {
             String prx = "L";
             SharedPreferences sharedPref = getSharedPreferences("conserve", 0);
             r2 = sharedPref.getString("Room2", "001");
-            myTextView3.setText("Your package delivery service to room " + r2 +" is complete now, please press the button below to confirm");
-            node.is_app_completed_interaction=true;
+            myTextView4.setText("Your package delivery service to room " + prx + r2 + " is complete now, please press the button below to confirm");
+
+            node.app_status = 0;
+
+            node.is_app_completed_interaction = true;
             come_back_to_main.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -36,6 +42,5 @@ public class sendWait_Complete extends sendDestin {
                 }
             });
         }
-
     }
 }

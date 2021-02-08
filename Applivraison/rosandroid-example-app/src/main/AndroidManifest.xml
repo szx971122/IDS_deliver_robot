@@ -23,6 +23,7 @@
         <activity android:name=".sendActivity" />
         <activity android:name=".sendCall" />
         <activity android:name=".sendDestin" />
+        <activity android:name="sendRefresh"/>
         <activity android:name="sendWait_Complete"/>
         <activity android:name=".receiveActivity" />
         <activity android:name=".receiveConfirm" />

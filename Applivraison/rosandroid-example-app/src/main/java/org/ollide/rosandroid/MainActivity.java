@@ -37,12 +37,12 @@ public class MainActivity extends RosActivity {
 
     static public SimplePublisherNode node;
     public Button btn1,btn2;
-    public String r1,r2,rs;
+    public String r1,r2;
     // private RosTextView<std_msgs.String> rosTextView;
     public boolean judge;
 
     public MainActivity() {
-        super("RosAndroidExample", "RosAndroidExample", URI.create("http://172.16.16.101:11311/"));
+        super("RosAndroidExample", "RosAndroidExample", URI.create("http://192.168.137.9:11311"));
     }
 
     @Override
@@ -65,13 +65,28 @@ public class MainActivity extends RosActivity {
         });*/
 
 
+
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(node.app_status == 0) {
-                    Intent intent = new Intent(MainActivity.this, sendActivity.class);
-                    startActivity(intent);
-                    node.app_status = 1;
+                if(true) {
+                    switch (node.app_status) {
+                        case 0:
+                            Intent intent = new Intent(MainActivity.this, sendActivity.class);
+                            startActivity(intent);
+                            node.app_status = 1;
+//                        case 4:
+//                            Intent intent4 = new Intent(MainActivity.this, sendRefresh.class);
+//                            startActivity(intent4);
+//
+//                        case 5:
+//                            Intent intent6 = new Intent(MainActivity.this, sendRefresh.class);
+//                            startActivity(intent6);
+                        default:
+                            break;
+
+                    }
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Robot is not available now, please wait", Toast.LENGTH_LONG).show();

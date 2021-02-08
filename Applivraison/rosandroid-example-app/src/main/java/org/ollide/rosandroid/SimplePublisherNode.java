@@ -32,6 +32,7 @@ import java.util.Date;
 
 import std_msgs.UInt8;
 
+
 public class SimplePublisherNode extends AbstractNodeMain implements NodeMain {
 
     private static final String TAG = SimplePublisherNode.class.getSimpleName();
@@ -55,6 +56,7 @@ public class SimplePublisherNode extends AbstractNodeMain implements NodeMain {
 
     @Override
     public GraphName getDefaultNodeName() {
+        // different name for each APP
         return GraphName.of("IDS_deliver_robot/Client");
     }
 
@@ -62,19 +64,22 @@ public class SimplePublisherNode extends AbstractNodeMain implements NodeMain {
     public void onStart(ConnectedNode connectedNode) {
 
         app_status = 0;
-        is_robot_reached_target = true;
-        is_app_completed_interaction = true;
+        is_goal_confirmed = false;
+        is_robot_reached_target = false;
+        is_app_completed_interaction = false;
 
         final Publisher<std_msgs.String> pubGoalId = connectedNode.newPublisher(GraphName.of("service_goal_id"), std_msgs.String._TYPE);
         final Publisher<std_msgs.UInt8> pubAppStatus = connectedNode.newPublisher(GraphName.of("app_status"), UInt8._TYPE);
 
         final Subscriber<std_msgs.UInt8> subServiceStatus = connectedNode.newSubscriber(GraphName.of("turtlebot3_service_status"), UInt8._TYPE);
-
         subServiceStatus.addMessageListener(new MessageListener<UInt8>() {
             @Override
             public void onNewMessage(UInt8 status) {
                 if (status.getData() == 3){
                     is_robot_reached_target = true;
+                    if (app_status == 4){
+                        app_status = 5;
+                    }
                 }
             }
         });
@@ -123,13 +128,21 @@ public class SimplePublisherNode extends AbstractNodeMain implements NodeMain {
                     std_msgs.String str = pubGoalId.newMessage();
                     str.setData(strGoalId);
                     pubGoalId.publish(str);
+
+                    std_msgs.UInt8 status = pubAppStatus.newMessage();
+                    status.setData((byte) app_status);
+                    pubAppStatus.publish(status);
+
                     is_goal_confirmed = false;
                 }
                 if (is_app_completed_interaction) {
                     std_msgs.UInt8 status = pubAppStatus.newMessage();
                     status.setData((byte) app_status);
+                    pubAppStatus.publish(status);
+
                     is_app_completed_interaction = false;
                 }
+
 
                 // go to sleep for one second
                 Thread.sleep(20);
