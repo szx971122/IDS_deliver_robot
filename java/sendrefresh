@@ -1,0 +1,85 @@
+package org.ollide.rosandroid;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.RequiresApi;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class sendRefresh extends MainActivity {
+    private TextView myTextView3;
+    private Button refresh;
+    private ImageView i_deli;
+    private boolean run = false;
+    private final Handler handler = new Handler();
+    public ImageView box;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState4) {
+        super.onCreate(savedInstanceState4);
+        setContentView(R.layout.send_wait_refresh);
+
+        run = true;
+        handler.postDelayed(task, 1000);
+        
+        box = (ImageView) findViewById(R.id.reached);
+        box.bringToFront();
+
+        myTextView3 = (TextView) findViewById(R.id.textView7);
+        myTextView3.setText("Your package is sending now, please wait.");
+
+        i_deli=(ImageView) findViewById(R.id.en_train);
+        i_deli.setVisibility(View.VISIBLE);
+
+        refresh = (Button) findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v){
+                    if(node.app_status==6) {
+
+                        Toast.makeText(getApplicationContext(), "Mission completed!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(sendRefresh.this, sendWait_Complete.class);
+                        startActivity(intent);
+                    }
+
+            }
+
+        });
+
+    }
+    private final Runnable task = new Runnable() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            if (run) {
+
+                final float x = box.getX();
+                final float y = box.getY();
+
+                final int targetX = 100;
+                final int targetY = 100;
+
+
+                box.animate()
+                        .translationX(-(x - targetX))
+                        .translationY(-(y - targetY))
+                        .setDuration(500)
+                        .setInterpolator(new AccelerateInterpolator())
+                        .withLayer()
+                        .start();
+
+                handler.postDelayed(this, 1000);
+            }
+        }
+    };
+
+}
